@@ -1,0 +1,434 @@
+<UserControl x:Class="BlockBusters.BlockBusterUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BlockBusters"
+             mc:Ignorable="d" 
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform"
+             Focusable="True"
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <!-- DC- Blockbuster VM-->
+    <UserControl.Resources>
+        <local:VisibilityConverter x:Key="VisibilityConverter"/>
+    </UserControl.Resources>
+
+    <UserControl.InputBindings>
+        <KeyBinding Key="Z" Modifiers="Ctrl" Command="{Binding FlashTeam1Command, Mode=TwoWay}"/>
+        <KeyBinding Key="X" Modifiers="Ctrl" Command="{Binding FlashTeam2Command}"/>
+        <KeyBinding Key="A" Modifiers="Ctrl" Command="{Binding FlashAllCommand}"/>
+    </UserControl.InputBindings>
+    
+    <Viewbox Stretch="UniformToFill" DataContext="{Binding}"  >
+        <DockPanel Background="Black">
+        
+        <Grid DockPanel.Dock="Bottom"  Height="120" HorizontalAlignment="Stretch">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="305"/>
+                    <ColumnDefinition Width="700"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Grid.RowSpan="2" Grid.Row="0"  Visibility="{Binding ShowBoard, Converter={StaticResource VisibilityConverter}}" Content="New Game" Command="{Binding SetNewGameCommand}" Style="{StaticResource MenuButtonStyle}" VerticalAlignment="Bottom" Margin="0,0,0,-20"/>
+                <Button Grid.Column="1" Grid.RowSpan="2" Grid.Row="0" HorizontalAlignment="Left" Visibility="{Binding ShowBoard, Converter={StaticResource VisibilityConverter}}" Content="Reset" Command="{Binding ResetGameCommand}"  Style="{StaticResource MenuButtonStyle}" VerticalAlignment="Bottom" Margin="0,0,0,-20"/>
+                <Label Visibility="Visible" Foreground="White" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3"  VerticalContentAlignment="Center" Content=" Developed by Rumana @Leadows Technologies" Margin="20,0,0,0" />
+
+            <Label  Grid.Column="2" Grid.RowSpan="4" FontFamily="./Fonts/Blockt.ttf#Blockt"  Content="WORDBUSTERS" FontSize="70"
+                Foreground="DodgerBlue" 
+               HorizontalAlignment="Stretch" HorizontalContentAlignment="Left"  VerticalAlignment="Top" Margin="0,-20,0,0" VerticalContentAlignment="Top"/>
+
+                <Label Grid.Column="3" Grid.Row="0" Grid.RowSpan="2" Content="{Binding Board.Team1Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="{Binding Board.Team1Color}" FontSize="30" FontWeight="Bold"  />
+                <Label Grid.Column="3" Grid.Row="2" Grid.RowSpan="2" Content="{Binding Board.Team2Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="{Binding Board.Team2Color}" FontSize="30" FontWeight="Bold"  />
+            <!--<StackPanel Grid.Column="3" >
+                <Label Content="Team 1" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="{Binding Board.Team1Color}" FontSize="20" FontStyle="Italic" FontWeight="DemiBold" Margin="0,0,5,0" Padding="0,0,5,0"/>
+            </StackPanel>
+            <StackPanel Grid.Column="4">
+                <Label Content="Team 2" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="{Binding Board.Team2Color}" FontSize="20" FontStyle="Italic" FontWeight="DemiBold" Margin="5,0,0,0" Padding="5,0,0,0"/>
+            </StackPanel>-->
+            </Grid>
+
+        <!-- DC= BlockbusterVM-->
+       
+            <Grid Width="1450" Height="650" >
+
+            <Grid  HorizontalAlignment="Center" VerticalAlignment="Center" 
+                Visibility="{Binding ShowBoard, Converter={StaticResource VisibilityConverter}}">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <Label Panel.ZIndex="-1" Grid.Row="2" Grid.RowSpan="9" Grid.Column="10" Grid.ColumnSpan="21" Background="#ff6900" />
+                <!--<Label Panel.ZIndex="-1" Grid.Row="0" Grid.RowSpan="11" Grid.Column="11" Grid.ColumnSpan="19" Background="{Binding Board.Team2Color , Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>-->
+
+                <Label Grid.Row="1" Grid.Column="7" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="{Binding Board.Team1ColorGradient}" Background="{Binding Board.Team1Color}" Height="Auto" Width="Auto"  Style="{StaticResource LeftBorderLabelsStyle}"/>
+                <Label Grid.Row="3" Grid.Column="7" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="{Binding Board.Team1ColorGradient}" Background="{Binding Board.Team1Color}" Height="Auto" Width="Auto"  Style="{StaticResource LeftBorderLabelsStyle}"/>
+                <Label Grid.Row="5" Grid.Column="7" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="{Binding Board.Team1ColorGradient}" Background="{Binding Board.Team1Color}" Height="Auto" Width="Auto"  Style="{StaticResource LeftBorderLabelsStyle}"/>
+                <Label Grid.Row="7" Grid.Column="7" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="{Binding Board.Team1ColorGradient}" Background="{Binding Board.Team1Color}" Height="Auto" Width="Auto"  Style="{StaticResource LeftBorderLabelsStyle}"/>
+                <Label Grid.Row="9" Grid.Column="7" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="{Binding Board.Team1ColorGradient}" Background="{Binding Board.Team1Color}" Height="Auto" Width="Auto"  Style="{StaticResource LeftBorderLabelsStyle}"/>
+
+
+                <Label Grid.Row="1" Grid.Column="30" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="{Binding Board.Team1ColorGradient}" Background="{Binding Board.Team1Color}" Height="Auto" Width="Auto"  Style="{StaticResource RightBorderLabelsStyle}"/>
+                <Label Grid.Row="3" Grid.Column="30" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="{Binding Board.Team1ColorGradient}" Background="{Binding Board.Team1Color}" Height="Auto" Width="Auto"  Style="{StaticResource RightBorderLabelsStyle}"/>
+                <Label Grid.Row="5" Grid.Column="30" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="{Binding Board.Team1ColorGradient}" Background="{Binding Board.Team1Color}" Height="Auto" Width="Auto"  Style="{StaticResource RightBorderLabelsStyle}"/>
+                <Label Grid.Row="7" Grid.Column="30" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="{Binding Board.Team1ColorGradient}" Background="{Binding Board.Team1Color}" Height="Auto" Width="Auto"  Style="{StaticResource RightBorderLabelsStyle}"/>
+                <Label Grid.Row="9" Grid.Column="30" Grid.RowSpan="2" Grid.ColumnSpan="4" BorderBrush="{Binding Board.Team1ColorGradient}" Background="{Binding Board.Team1Color}" Height="Auto" Width="Auto"  Style="{StaticResource RightBorderLabelsStyle}"/>
+
+                <!--First set-->
+                <!--Column1-->
+                <Label Grid.Row="0" Grid.Column="10" Grid.RowSpan="2" Grid.ColumnSpan="5" BorderBrush="{Binding Board.Team2ColorGradient}" Background="{Binding Board.Team2Color}" Height="Auto" Width="Auto"  Style="{StaticResource TopBorderLabelsStyle}"/>
+                
+                <ToggleButton  Grid.Row="2" Grid.Column="10" Grid.RowSpan="2" Grid.ColumnSpan="5" Height="Auto" Width="Auto" 
+                    Background="{Binding Board.Cells[0].CellColor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                     Content="{Binding Board.Cells[0].Letter}" BorderBrush="{Binding Board.Cells[0].CellBorderGradient }"
+                    IsChecked="{Binding Board.Cells[0].FlashingFlag}" Style="{StaticResource HexagonButtonStyle}" FontSize="50">
+                    <ToggleButton.InputBindings>
+                        <MouseBinding MouseAction="LeftClick" Command="{Binding FlashOrResetButtonCommand}" CommandParameter="{Binding Board.Cells[0].CellNumber}"/>
+                        <MouseBinding MouseAction="RightClick" Command="{Binding SetTeam1ColorCommand}" CommandParameter="{Binding Board.Cells[0].CellNumber}"/>
+                        <MouseBinding MouseAction="RightDoubleClick" Command="{Binding SetTeam2ColorCommand}" CommandParameter="{Binding Board.Cells[0].CellNumber}"/>
+                    </ToggleButton.InputBindings>
+                </ToggleButton>
+                <ToggleButton Grid.Row="4"  Grid.Column="10" Grid.RowSpan="2" Grid.ColumnSpan="5" Height="Auto" Width="Auto"
+                          Background="{Binding Board.Cells[1].CellColor}" Content="{Binding Board.Cells[1].Letter}" BorderBrush="{Binding Board.Cells[1].CellBorderGradient }"
+                          IsChecked="{Binding Board.Cells[1].FlashingFlag}" FontSize="50"  Style="{StaticResource HexagonButtonStyle}">
+                    <ToggleButton.InputBindings>
+                        <MouseBinding MouseAction="LeftClick" Command="{Binding FlashOrResetButtonCommand}" CommandParameter="{Binding Board.Cells[1].CellNumber}"/>
+                        <MouseBinding MouseAction="RightClick" Command="{Binding SetTeam1ColorCommand}" CommandParameter="{Binding Board.Cells[1].CellNumber}"/>
+                        <MouseBinding MouseAction="RightDoubleClick" Command="{Binding SetTeam2ColorCommand}" CommandParameter="{Binding Board.Cells[1].CellNumber}"/>
+                    </ToggleButton.InputBindings>
+                </ToggleButton>
+                <ToggleButton Grid.Row="6"  Grid.Column="10" Grid.RowSpan="2" Grid.ColumnSpan="5" Height="Auto" Width="Auto" 
+                          Background="{Binding Board.Cells[2].CellColor}" Content="{Binding Board.Cells[2].Letter}" BorderBrush="{Binding Board.Cells[2].CellBorderGradient }" 
+                          IsChecked="{Binding Board.Cells[2].FlashingFlag}" FontSize="50" Style="{StaticResource HexagonButtonStyle}">
+                    <ToggleButton.InputBindings>
+                        <MouseBinding MouseAction="LeftClick" Command="{Binding FlashOrResetButtonCommand}" CommandParameter="{Binding Board.Cells[2].CellNumber}"/>
+                        <MouseBinding MouseAction="RightClick" Command="{Binding SetTeam1ColorCommand}" CommandParameter="{Binding Board.Cells[2].CellNumber}"/>
+                        <MouseBinding MouseAction="RightDoubleClick" Command="{Binding SetTeam2ColorCommand}" CommandParameter="{Binding Board.Cells[2].CellNumber}"/>
+                    </ToggleButton.InputBindings>
+                </ToggleButton>
+                <ToggleButton Grid.Row="8"  Grid.Column="10" Grid.RowSpan="2" Grid.ColumnSpan="5" Height="Auto" Width="Auto" 
+                          Background="{Binding Board.Cells[3].CellColor}" Content="{Binding Board.Cells[3].Letter}" BorderBrush="{Binding Board.Cells[3].CellBorderGradient }"
+                          IsChecked="{Binding Board.Cells[3].FlashingFlag}" FontSize="50" Style="{StaticResource HexagonButtonStyle}">
+                    <ToggleButton.InputBindings>
+                        <MouseBinding MouseAction="LeftClick" Command="{Binding FlashOrResetButtonCommand}" CommandParameter="{Binding Board.Cells[3].CellNumber}"/>
+                        <MouseBinding MouseAction="RightClick" Command="{Binding SetTeam1ColorCommand}" CommandParameter="{Binding Board.Cells[3].CellNumber}"/>
+                        <MouseBinding MouseAction="RightDoubleClick" Command="{Binding SetTeam2ColorCommand}" CommandParameter="{Binding Board.Cells[3].CellNumber}"/>
+                    </ToggleButton.InputBindings>
+                </ToggleButton>
+                <Label Grid.Row="10" Grid.Column="10" Grid.RowSpan="2" Grid.ColumnSpan="5" BorderBrush="{Binding Board.Team2ColorGradient}" Background="{Binding Board.Team2Color}" Height="Auto" Width="Auto"  Style="{StaticResource BottomBorderLabelsStyle}"/>
+
+                <!--Column2-->
+                <Label Grid.Row="1" Grid.Column="14" Grid.RowSpan="2" Grid.ColumnSpan="5" BorderBrush="{Binding Board.Team2ColorGradient}" Background="{Binding Board.Team2Color}" Height="Auto" Width="Auto"  Style="{StaticResource TopBorderLabelsStyle}"/>
+                <ToggleButton Grid.Row="3"  Grid.Column="14" Grid.RowSpan="2" Grid.ColumnSpan="5" Height="Auto" Width="Auto" 
+                          Background="{Binding Board.Cells[4].CellColor}" Content="{Binding Board.Cells[4].Letter}" BorderBrush="{Binding Board.Cells[4].CellBorderGradient }"
+                          IsChecked="{Binding Board.Cells[4].FlashingFlag}" FontSize="50" Style="{StaticResource HexagonButtonStyle}">
+                    <ToggleButton.InputBindings>
+                        <MouseBinding MouseAction="LeftClick" Command="{Binding FlashOrResetButtonCommand}" CommandParameter="{Binding Board.Cells[4].CellNumber}"/>
+                        <MouseBinding MouseAction="RightClick" Command="{Binding SetTeam1ColorCommand}" CommandParameter="{Binding Board.Cells[4].CellNumber}"/>
+                        <MouseBinding MouseAction="RightDoubleClick" Command="{Binding SetTeam2ColorCommand}" CommandParameter="{Binding Board.Cells[4].CellNumber}"/>
+                    </ToggleButton.InputBindings>
+                </ToggleButton>
+                <ToggleButton Grid.Row="5"  Grid.Column="14" Grid.RowSpan="2" Grid.ColumnSpan="5" Height="Auto" Width="Auto" 
+                          Background="{Binding Board.Cells[5].CellColor}" Content="{Binding Board.Cells[5].Letter}" BorderBrush="{Binding Board.Cells[5].CellBorderGradient }"
+                          IsChecked="{Binding Board.Cells[5].FlashingFlag}" FontSize="50" Style="{StaticResource HexagonButtonStyle}">
+                    <ToggleButton.InputBindings>
+                        <MouseBinding MouseAction="LeftClick" Command="{Binding FlashOrResetButtonCommand}" CommandParameter="{Binding Board.Cells[5].CellNumber}"/>
+                        <MouseBinding MouseAction="RightClick" Command="{Binding SetTeam1ColorCommand}" CommandParameter="{Binding Board.Cells[5].CellNumber}"/>
+                        <MouseBinding MouseAction="RightDoubleClick" Command="{Binding SetTeam2ColorCommand}" CommandParameter="{Binding Board.Cells[5].CellNumber}"/>
+                    </ToggleButton.InputBindings>
+                </ToggleButton>
+                <ToggleButton Grid.Row="7"  Grid.Column="14" Grid.RowSpan="2" Grid.ColumnSpan="5" Height="Auto" Width="Auto" 
+                          Background="{Binding Board.Cells[6].CellColor}" Content="{Binding Board.Cells[6].Letter}" BorderBrush="{Binding Board.Cells[6].CellBorderGradient }"
+                          IsChecked="{Binding Board.Cells[6].FlashingFlag}" FontSize="50" Style="{StaticResource HexagonButtonStyle}">
+                    <ToggleButton.InputBindings>
+                        <MouseBinding MouseAction="LeftClick" Command="{Binding FlashOrResetButtonCommand}" CommandParameter="{Binding Board.Cells[6].CellNumber}"/>
+                        <MouseBinding MouseAction="RightClick" Command="{Binding SetTeam1ColorCommand}" CommandParameter="{Binding Board.Cells[6].CellNumber}"/>
+                        <MouseBinding MouseAction="RightDoubleClick" Command="{Binding SetTeam2ColorCommand}" CommandParameter="{Binding Board.Cells[6].CellNumber}"/>
+                    </ToggleButton.InputBindings>
+                </ToggleButton>
+                <ToggleButton Grid.Row="9"  Grid.Column="14" Grid.RowSpan="2" Grid.ColumnSpan="5" Height="Auto" Width="Auto" 
+                          Background="{Binding Board.Cells[7].CellColor}" Content="{Binding Board.Cells[7].Letter}" BorderBrush="{Binding Board.Cells[7].CellBorderGradient }"
+                          IsChecked="{Binding Board.Cells[7].FlashingFlag}" FontSize="50" Style="{StaticResource HexagonButtonStyle}">
+                    <ToggleButton.InputBindings>
+                        <MouseBinding MouseAction="LeftClick" Command="{Binding FlashOrResetButtonCommand}" CommandParameter="{Binding Board.Cells[7].CellNumber}"/>
+                        <MouseBinding MouseAction="RightClick" Command="{Binding SetTeam1ColorCommand}" CommandParameter="{Binding Board.Cells[7].CellNumber}"/>
+                        <MouseBinding MouseAction="RightDoubleClick" Command="{Binding SetTeam2ColorCommand}" CommandParameter="{Binding Board.Cells[7].CellNumber}"/>
+                    </ToggleButton.InputBindings>
+                </ToggleButton>
+                <Label Grid.Row="11" Grid.Column="14" Grid.RowSpan="2" Grid.ColumnSpan="5" BorderBrush="{Binding Board.Team2ColorGradient}" Background="{Binding Board.Team2Color}" Height="Auto" Width="Auto"  Style="{StaticResource BottomBorderLabelsStyle}"/>
+
+                <!-- Second set -->
+                <!--Column3-->
+                <Label Grid.Row="0" Grid.Column="18" Grid.RowSpan="2" Grid.ColumnSpan="5" BorderBrush="{Binding Board.Team2ColorGradient}" Background="{Binding Board.Team2Color}" Height="Auto" Width="Auto"  Style="{StaticResource TopBorderLabelsStyle}"/>
+                <ToggleButton Grid.Row="2" Grid.Column="18" Grid.RowSpan="2" Grid.ColumnSpan="5" Height="Auto" Width="Auto" 
+                          Background="{Binding Board.Cells[8].CellColor}" Content="{Binding Board.Cells[8].Letter}" BorderBrush="{Binding Board.Cells[8].CellBorderGradient }"
+                          IsChecked="{Binding Board.Cells[8].FlashingFlag}" FontSize="50" Style="{StaticResource HexagonButtonStyle}">
+                    <ToggleButton.InputBindings>
+                        <MouseBinding MouseAction="LeftClick" Command="{Binding FlashOrResetButtonCommand}" CommandParameter="{Binding Board.Cells[8].CellNumber}"/>
+                        <MouseBinding MouseAction="RightClick" Command="{Binding SetTeam1ColorCommand}" CommandParameter="{Binding Board.Cells[8].CellNumber}"/>
+                        <MouseBinding MouseAction="RightDoubleClick" Command="{Binding SetTeam2ColorCommand}" CommandParameter="{Binding Board.Cells[8].CellNumber}"/>
+                    </ToggleButton.InputBindings>
+                </ToggleButton>
+                <ToggleButton Grid.Row="4" Grid.Column="18" Grid.RowSpan="2" Grid.ColumnSpan="5" Height="Auto" Width="Auto" 
+                          Background="{Binding Board.Cells[9].CellColor}" Content="{Binding Board.Cells[9].Letter}" BorderBrush="{Binding Board.Cells[9].CellBorderGradient }"
+                    IsChecked="{Binding Board.Cells[9].FlashingFlag}" FontSize="50" Style="{StaticResource HexagonButtonStyle}">
+                    <ToggleButton.InputBindings>
+                        <MouseBinding MouseAction="LeftClick" Command="{Binding FlashOrResetButtonCommand}" CommandParameter="{Binding Board.Cells[9].CellNumber}"/>
+                        <MouseBinding MouseAction="RightClick" Command="{Binding SetTeam1ColorCommand}" CommandParameter="{Binding Board.Cells[9].CellNumber}"/>
+                        <MouseBinding MouseAction="RightDoubleClick" Command="{Binding SetTeam2ColorCommand}" CommandParameter="{Binding Board.Cells[9].CellNumber}"/>
+                    </ToggleButton.InputBindings>
+                </ToggleButton>
+                <ToggleButton Grid.Row="6" Grid.Column="18" Grid.RowSpan="2" Grid.ColumnSpan="5" Height="Auto" Width="Auto" 
+                          Background="{Binding Board.Cells[10].CellColor}" Content="{Binding Board.Cells[10].Letter}" BorderBrush="{Binding Board.Cells[10].CellBorderGradient }"
+                          IsChecked="{Binding Board.Cells[10].FlashingFlag}" FontSize="50" Style="{StaticResource HexagonButtonStyle}">
+                    <ToggleButton.InputBindings>
+                        <MouseBinding MouseAction="LeftClick" Command="{Binding FlashOrResetButtonCommand}" CommandParameter="{Binding Board.Cells[10].CellNumber}"/>
+                        <MouseBinding MouseAction="RightClick" Command="{Binding SetTeam1ColorCommand}" CommandParameter="{Binding Board.Cells[10].CellNumber}"/>
+                        <MouseBinding MouseAction="RightDoubleClick" Command="{Binding SetTeam2ColorCommand}" CommandParameter="{Binding Board.Cells[10].CellNumber}"/>
+                    </ToggleButton.InputBindings>
+                </ToggleButton>
+                <ToggleButton Grid.Row="8" Grid.Column="18" Grid.RowSpan="2" Grid.ColumnSpan="5" Height="Auto" Width="Auto"  
+                          Background="{Binding Board.Cells[11].CellColor}" Content="{Binding Board.Cells[11].Letter}" BorderBrush="{Binding Board.Cells[11].CellBorderGradient }"
+                          IsChecked="{Binding Board.Cells[11].FlashingFlag}" FontSize="50" Style="{StaticResource HexagonButtonStyle}">
+                    <ToggleButton.InputBindings>
+                        <MouseBinding MouseAction="LeftClick" Command="{Binding FlashOrResetButtonCommand}" CommandParameter="{Binding Board.Cells[11].CellNumber}"/>
+                        <MouseBinding MouseAction="RightClick" Command="{Binding SetTeam1ColorCommand}" CommandParameter="{Binding Board.Cells[11].CellNumber}"/>
+                        <MouseBinding MouseAction="RightDoubleClick" Command="{Binding SetTeam2ColorCommand}" CommandParameter="{Binding Board.Cells[11].CellNumber}"/>
+                    </ToggleButton.InputBindings>
+                </ToggleButton>
+                <Label Grid.Row="10" Grid.Column="18" Grid.RowSpan="2" Grid.ColumnSpan="5" BorderBrush="{Binding Board.Team2ColorGradient}" Background="{Binding Board.Team2Color}" Height="Auto" Width="Auto"  Style="{StaticResource BottomBorderLabelsStyle}"/>
+
+                <!--Column 4 -->
+                <Label Grid.Row="1" Grid.Column="22" Grid.RowSpan="2" Grid.ColumnSpan="5" BorderBrush="{Binding Board.Team2ColorGradient}" Background="{Binding Board.Team2Color}" Height="Auto" Width="Auto"  Style="{StaticResource TopBorderLabelsStyle}"/>
+                <ToggleButton Grid.Row="3" Grid.Column="22" Grid.RowSpan="2" Grid.ColumnSpan="5" Height="Auto" Width="Auto" 
+                          Background="{Binding Board.Cells[12].CellColor}" Content="{Binding Board.Cells[12].Letter}" BorderBrush="{Binding Board.Cells[12].CellBorderGradient }"
+                          IsChecked="{Binding Board.Cells[12].FlashingFlag}" FontSize="50" Style="{StaticResource HexagonButtonStyle}">
+                    <ToggleButton.InputBindings>
+                        <MouseBinding MouseAction="LeftClick" Command="{Binding FlashOrResetButtonCommand}" CommandParameter="{Binding Board.Cells[12].CellNumber}"/>
+                        <MouseBinding MouseAction="RightClick" Command="{Binding SetTeam1ColorCommand}" CommandParameter="{Binding Board.Cells[12].CellNumber}"/>
+                        <MouseBinding MouseAction="RightDoubleClick" Command="{Binding SetTeam2ColorCommand}" CommandParameter="{Binding Board.Cells[12].CellNumber}"/>
+                    </ToggleButton.InputBindings>
+                </ToggleButton>
+                <ToggleButton Grid.Row="5" Grid.Column="22" Grid.RowSpan="2" Grid.ColumnSpan="5" Height="Auto" Width="Auto" 
+                          Background="{Binding Board.Cells[13].CellColor}" Content="{Binding Board.Cells[13].Letter}" BorderBrush="{Binding Board.Cells[13].CellBorderGradient }"
+                          IsChecked="{Binding Board.Cells[13].FlashingFlag}" FontSize="50" Style="{StaticResource HexagonButtonStyle}">
+                    <ToggleButton.InputBindings>
+                        <MouseBinding MouseAction="LeftClick" Command="{Binding FlashOrResetButtonCommand}" CommandParameter="{Binding Board.Cells[13].CellNumber}"/>
+                        <MouseBinding MouseAction="RightClick" Command="{Binding SetTeam1ColorCommand}" CommandParameter="{Binding Board.Cells[13].CellNumber}"/>
+                        <MouseBinding MouseAction="RightDoubleClick" Command="{Binding SetTeam2ColorCommand}" CommandParameter="{Binding Board.Cells[13].CellNumber}"/>
+                    </ToggleButton.InputBindings>
+                </ToggleButton>
+                <ToggleButton Grid.Row="7" Grid.Column="22" Grid.RowSpan="2" Grid.ColumnSpan="5" Height="Auto" Width="Auto"  
+                          Background="{Binding Board.Cells[14].CellColor}" Content="{Binding Board.Cells[14].Letter}" BorderBrush="{Binding Board.Cells[14].CellBorderGradient }"
+                          IsChecked="{Binding Board.Cells[14].FlashingFlag}" FontSize="50" Style="{StaticResource HexagonButtonStyle}">
+                    <ToggleButton.InputBindings>
+                        <MouseBinding MouseAction="LeftClick" Command="{Binding FlashOrResetButtonCommand}" CommandParameter="{Binding Board.Cells[14].CellNumber}"/>
+                        <MouseBinding MouseAction="RightClick" Command="{Binding SetTeam1ColorCommand}" CommandParameter="{Binding Board.Cells[14].CellNumber}"/>
+                        <MouseBinding MouseAction="RightDoubleClick" Command="{Binding SetTeam2ColorCommand}" CommandParameter="{Binding Board.Cells[14].CellNumber}"/>
+                    </ToggleButton.InputBindings>
+                </ToggleButton>
+                <ToggleButton Grid.Row="9" Grid.Column="22" Grid.RowSpan="2" Grid.ColumnSpan="5" Height="Auto" Width="Auto"  
+                          Background="{Binding Board.Cells[15].CellColor}" Content="{Binding Board.Cells[15].Letter}" BorderBrush="{Binding Board.Cells[15].CellBorderGradient }"
+                          IsChecked="{Binding Board.Cells[15].FlashingFlag}" FontSize="50" Style="{StaticResource HexagonButtonStyle}">
+                    <ToggleButton.InputBindings>
+                        <MouseBinding MouseAction="LeftClick" Command="{Binding FlashOrResetButtonCommand}" CommandParameter="{Binding Board.Cells[15].CellNumber}"/>
+                        <MouseBinding MouseAction="RightClick" Command="{Binding SetTeam1ColorCommand}" CommandParameter="{Binding Board.Cells[15].CellNumber}"/>
+                        <MouseBinding MouseAction="RightDoubleClick" Command="{Binding SetTeam2ColorCommand}" CommandParameter="{Binding Board.Cells[15].CellNumber}"/>
+                    </ToggleButton.InputBindings>
+                </ToggleButton>
+                <Label Grid.Row="11" Grid.Column="22" Grid.RowSpan="2" Grid.ColumnSpan="5" BorderBrush="{Binding Board.Team2ColorGradient}" Background="{Binding Board.Team2Color}" Height="Auto" Width="Auto"  Style="{StaticResource BottomBorderLabelsStyle}"/>
+
+                <!-- Third set-->
+                <!--Column 5-->
+                <Label Grid.Row="0" Grid.Column="26" Grid.RowSpan="2" Grid.ColumnSpan="5" BorderBrush="{Binding Board.Team2ColorGradient}" Background="{Binding Board.Team2Color}" Height="Auto" Width="Auto"  Style="{StaticResource TopBorderLabelsStyle}"/>
+                <ToggleButton Grid.Row="2" Grid.Column="26" Grid.RowSpan="2" Grid.ColumnSpan="5" Height="Auto" Width="Auto"   
+                          Background="{Binding Board.Cells[16].CellColor}" Content="{Binding Board.Cells[16].Letter}" BorderBrush="{Binding Board.Cells[16].CellBorderGradient }"
+                          IsChecked="{Binding Board.Cells[16].FlashingFlag}" FontSize="50" Style="{StaticResource HexagonButtonStyle}">
+                    <ToggleButton.InputBindings>
+                        <MouseBinding MouseAction="LeftClick" Command="{Binding FlashOrResetButtonCommand}" CommandParameter="{Binding Board.Cells[16].CellNumber}"/>
+                        <MouseBinding MouseAction="RightClick" Command="{Binding SetTeam1ColorCommand}" CommandParameter="{Binding Board.Cells[16].CellNumber}"/>
+                        <MouseBinding MouseAction="RightDoubleClick" Command="{Binding SetTeam2ColorCommand}" CommandParameter="{Binding Board.Cells[16].CellNumber}"/>
+                    </ToggleButton.InputBindings>
+                </ToggleButton>
+                <ToggleButton Grid.Row="4" Grid.Column="26" Grid.RowSpan="2" Grid.ColumnSpan="5" Height="Auto" Width="Auto"   
+                          Background="{Binding Board.Cells[17].CellColor}" Content="{Binding Board.Cells[17].Letter}" BorderBrush="{Binding Board.Cells[17].CellBorderGradient }"
+                          IsChecked="{Binding Board.Cells[17].FlashingFlag}" FontSize="50" Style="{StaticResource HexagonButtonStyle}">
+                    <ToggleButton.InputBindings>
+                        <MouseBinding MouseAction="LeftClick" Command="{Binding FlashOrResetButtonCommand}" CommandParameter="{Binding Board.Cells[17].CellNumber}"/>
+                        <MouseBinding MouseAction="RightClick" Command="{Binding SetTeam1ColorCommand}" CommandParameter="{Binding Board.Cells[17].CellNumber}"/>
+                        <MouseBinding MouseAction="RightDoubleClick" Command="{Binding SetTeam2ColorCommand}" CommandParameter="{Binding Board.Cells[17].CellNumber}"/>
+                    </ToggleButton.InputBindings>
+                </ToggleButton>
+                <ToggleButton Grid.Row="6" Grid.Column="26" Grid.RowSpan="2" Grid.ColumnSpan="5" Height="Auto" Width="Auto"   
+                          Background="{Binding Board.Cells[18].CellColor}" Content="{Binding Board.Cells[18].Letter}" BorderBrush="{Binding Board.Cells[18].CellBorderGradient }"
+                          IsChecked="{Binding Board.Cells[18].FlashingFlag}" FontSize="50" Style="{StaticResource HexagonButtonStyle}">
+                    <ToggleButton.InputBindings>
+                        <MouseBinding MouseAction="LeftClick" Command="{Binding FlashOrResetButtonCommand}" CommandParameter="{Binding Board.Cells[18].CellNumber}"/>
+                        <MouseBinding MouseAction="RightClick" Command="{Binding SetTeam1ColorCommand}" CommandParameter="{Binding Board.Cells[18].CellNumber}"/>
+                        <MouseBinding MouseAction="RightDoubleClick" Command="{Binding SetTeam2ColorCommand}" CommandParameter="{Binding Board.Cells[18].CellNumber}"/>
+                    </ToggleButton.InputBindings>
+                </ToggleButton>
+                <ToggleButton Grid.Row="8" Grid.Column="26" Grid.RowSpan="2" Grid.ColumnSpan="5" Height="Auto" Width="Auto"  
+                          Background="{Binding Board.Cells[19].CellColor}" Content="{Binding Board.Cells[19].Letter}" BorderBrush="{Binding Board.Cells[19].CellBorderGradient }"
+                          IsChecked="{Binding Board.Cells[19].FlashingFlag}" FontSize="50" Style="{StaticResource HexagonButtonStyle}">
+                    <ToggleButton.InputBindings>
+                        <MouseBinding MouseAction="LeftClick" Command="{Binding FlashOrResetButtonCommand}" CommandParameter="{Binding Board.Cells[19].CellNumber}"/>
+                        <MouseBinding MouseAction="RightClick" Command="{Binding SetTeam1ColorCommand}" CommandParameter="{Binding Board.Cells[19].CellNumber}"/>
+                        <MouseBinding MouseAction="RightDoubleClick" Command="{Binding SetTeam2ColorCommand}" CommandParameter="{Binding Board.Cells[19].CellNumber}"/>
+                    </ToggleButton.InputBindings>
+                </ToggleButton>
+                <Label Grid.Row="10" Grid.Column="26" Grid.RowSpan="2" Grid.ColumnSpan="5" BorderBrush="{Binding Board.Team2ColorGradient}" Background="{Binding Board.Team2Color}" Height="Auto" Width="Auto"  Style="{StaticResource BottomBorderLabelsStyle}"/>
+
+            </Grid>
+
+            <Grid Width="400" Height="500" VerticalAlignment="Center" HorizontalAlignment="Center" 
+              Background="White"  Visibility="{Binding ShowForm, Converter={StaticResource VisibilityConverter} }">
+                <!-- Show the following fields: Label on top, Combobox for board game, Team1 Name Team1Color Team2 Name, Team2 Color-->
+                <Grid.RowDefinitions>
+                    <!--Label-->
+                    <RowDefinition Height="100"/>
+                    <!-- ComboBox For Board Selection-->
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="110"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Label Margin="3,3,3,3" Grid.Row="0" Grid.ColumnSpan="3" HorizontalAlignment="Center" HorizontalContentAlignment="Center" 
+                   VerticalAlignment="Center" Foreground="DodgerBlue" VerticalContentAlignment="Center" Content="Settings" 
+                   FontSize="24" FontWeight="DemiBold"/>
+
+                <Label Margin="3,3,3,3" Grid.Row="1" Grid.Column="0" Content="Select a Board" HorizontalAlignment="Center" 
+                      VerticalAlignment="Center" FontSize="14" Foreground="DodgerBlue" />
+                <ComboBox Margin="3,3,8,3" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" ItemsSource="{Binding BoardNames}" 
+                          HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" 
+                      VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="14"
+                      Foreground="DodgerBlue" SelectedItem="{Binding SelectedBoard, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"/>
+
+                <Label Margin="3,3,3,3" Grid.Row="2" Grid.Column="0" Content="Team1 Name" HorizontalAlignment="Center" 
+                      VerticalAlignment="Center" FontSize="14" Foreground="DodgerBlue"/>
+                <TextBox Margin="3,3,3,3" Padding="3,3,3,3" Grid.Row="2" Grid.Column="1" Text="{Binding Board.Team1Name, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" 
+                     HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="14" FontWeight="SemiBold" />
+
+                <!--<Label Grid.Row="3" Grid.Column="0" Content="Team1 Colour" HorizontalAlignment="Center"-->
+                <!--VerticalAlignment="Center" FontSize="14" Foreground="DodgerBlue"/>-->
+                <ComboBox Margin="3,3,8,3" Grid.Row="2" Grid.Column="2" 
+                      ItemsSource="{Binding AllColors}" 
+                      SelectedItem="{Binding Board.Team1Color, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                      HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="14" FontWeight="SemiBold">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <Border CornerRadius="2"  Width="20" Height="20"  Background="{Binding .}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+
+                    <ComboBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <UniformGrid Columns="8"/>
+                        </ItemsPanelTemplate>
+                    </ComboBox.ItemsPanel>
+                </ComboBox>
+
+                <Label Margin="3,3,3,3" Grid.Row="3" Grid.Column="0" Content="Team2 Name" HorizontalAlignment="Center" 
+                      VerticalAlignment="Center" FontSize="14" Foreground="DodgerBlue"/>
+                <TextBox Margin="3,3,3,3" Padding="3,3,3,3" Grid.Row="3" Grid.Column="1" Text="{Binding Board.Team2Name, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" 
+                     HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="14" FontWeight="SemiBold" />
+
+                <!--<Label Grid.Row="5" Grid.Column="0" Content="Team2 Colour" HorizontalAlignment="Center" 
+                      VerticalAlignment="Center" FontSize="14" Foreground="DodgerBlue"/>-->
+                <ComboBox Margin="3,3,8,3" Grid.Row="3" Grid.Column="2" 
+                      ItemsSource="{Binding AllColors}" 
+                      SelectedItem="{Binding Board.Team2Color, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                      HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="14" FontWeight="SemiBold">
+
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <Border CornerRadius="2"  Width="20" Height="20"  Background="{Binding .}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+
+                    <ComboBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <UniformGrid Columns="8"/>
+                        </ItemsPanelTemplate>
+                    </ComboBox.ItemsPanel>
+                </ComboBox>
+
+                <Button Grid.Row="4" Grid.ColumnSpan="3" Content="Start New Game" Command="{Binding StartNewGameCommand}" 
+                    Style="{StaticResource MenuButtonStyle}"/>
+
+            </Grid>
+        </Grid>
+    </DockPanel>
+            </Viewbox>
+  
+</UserControl>

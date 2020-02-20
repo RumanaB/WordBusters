@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2018
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlockBusters", "BlockBusters.csproj", "{37C1C8A3-3ACA-4D3C-85AD-7A345B78C59D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{37C1C8A3-3ACA-4D3C-85AD-7A345B78C59D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37C1C8A3-3ACA-4D3C-85AD-7A345B78C59D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37C1C8A3-3ACA-4D3C-85AD-7A345B78C59D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37C1C8A3-3ACA-4D3C-85AD-7A345B78C59D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8E729825-4AE6-4774-820B-496C50A39D8E}
+	EndGlobalSection
+EndGlobal
